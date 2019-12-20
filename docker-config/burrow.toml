@@ -1,25 +1,25 @@
 [zookeeper]
-servers=[ "zookeeper:2181" ]
+servers=[ {ZOOKEEPER_SERVERS} ]
 timeout=6
 root-path="/burrow"
 
 [cluster.local]
 class-name="kafka"
-servers=[ "kafka:9092" ]
+servers=[ {KAFKA_BROKERS} ]
 topic-refresh=60
 offset-refresh=30
 
 [consumer.local]
 class-name="kafka"
 cluster="local"
-servers=[ "kafka:9092" ]
+servers=[ {KAFKA_BROKERS} ]
 group-blacklist="^(console-consumer-|python-kafka-consumer-).*$"
 group-whitelist=""
 
 [consumer.local_zk]
 class-name="kafka_zk"
 cluster="local"
-servers=[ "zookeeper:2181" ]
+servers=[ {ZOOKEEPER_SERVERS} ]
 zookeeper-path="/local"
 zookeeper-timeout=30
 group-blacklist="^(console-consumer-|python-kafka-consumer-).*$"
